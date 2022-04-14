@@ -22,6 +22,7 @@ import com.ctrip.framework.apollo.biz.message.Topics;
 import com.ctrip.framework.apollo.biz.repository.ReleaseMessageRepository;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -156,8 +157,8 @@ public class ReleaseMessageServiceWithCacheTest {
             .findLatestReleaseMessagesGroupByMessages(Sets.newHashSet(someMsgContent, antherMsgContent));
 
     assertEquals(2, latestReleaseMsgGroupByMsgContent.size());
-    assertEquals(500, latestReleaseMsgGroupByMsgContent.get(1).getId());
-    assertEquals(501, latestReleaseMsgGroupByMsgContent.get(0).getId());
+    Assert.assertTrue(500 == latestReleaseMsgGroupByMsgContent.get(0).getId() || 501 == latestReleaseMsgGroupByMsgContent.get(0).getId());
+    Assert.assertTrue(500 == latestReleaseMsgGroupByMsgContent.get(1).getId() || 501 == latestReleaseMsgGroupByMsgContent.get(1).getId());
   }
 
   @Test
